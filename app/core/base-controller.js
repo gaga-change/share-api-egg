@@ -2,6 +2,11 @@
 
 const Controller = require('egg').Controller;
 
+/**
+ * 参数列表以及说明
+ *  modelName：model名称 （必填）
+ *  populates：index使用。显示挂载id的文档内容
+ */
 class BaseController extends Controller {
 
   constructor(options, ...args) {

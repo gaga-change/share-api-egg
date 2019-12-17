@@ -15,10 +15,10 @@ class UserController extends BaseController {
 
   async update() {
     const { ctx } = this;
-    const { userId: id } = ctx.params;
+    const { _id } = ctx.session.user
     const user = ctx.request.body;
-    
-    const temp = await this.User.updateOne({ _id: id }, user);
+
+    const temp = await this.User.updateOne({ _id }, user);
     ctx.assert(temp.nModified === 1, this.config.statusCode.NO_FOUND, '资源不存在');
     this.success(null, this.config.statusCode.NO_CONENT);
   }

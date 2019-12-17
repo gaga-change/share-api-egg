@@ -6,8 +6,7 @@
 module.exports = app => {
   return async function auth(ctx, next) {
     const { config } = app;
-    const user = ctx.session.user;
-    if (user._id === ctx.params.userId) {
+    if (ctx.session.user) {
       return next()
     }
     ctx.status = config.statusCode.UNAUTHORIZED;

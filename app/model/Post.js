@@ -11,7 +11,7 @@ module.exports = app => {
     gitUrl: {type: String, default: '', trim: true}, // git url地址
     describe: {type: String, default: '', trim: true}, // 描述
     tags: [{type: String, trim: true}], // 标签
-    creater: [{type: Schema.Types.ObjectId, ref: 'User' }]
+    auther: [{type: Schema.Types.ObjectId, ref: 'User' }]
   }, {
     timestamps: true,
   });

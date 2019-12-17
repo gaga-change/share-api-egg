@@ -5,5 +5,18 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  const auth = app.middleware.auth(app);
+
   router.get('/', controller.home.index);
+
+    // ## auth
+    router.post('/api/auth/login', controller.auth.login); // 登录
+    router.post('/api/auth/register', controller.auth.register); // 注册
+    router.get('/api/auth/current', controller.auth.current); // 当前用户
+    router.get('/api/auth/logout', controller.auth.logout); // 退出登录
+
+    // ## user
+    router.get('/api/users', controller.user.index);
+    router.get('/api/users/:id', controller.user.show);
+    router.put('/api/users/:userId', auth, controller.user.update);
 };

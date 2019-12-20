@@ -61,5 +61,5 @@ module.exports = app => {
     },
   };
 
-  return mongoose.model('User', UserSchema, 'blog_user');
+  return mongoose.model('User', UserSchema, 'share_user');
 };

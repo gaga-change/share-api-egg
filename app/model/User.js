@@ -12,7 +12,6 @@ module.exports = app => {
   const UserSchema = new Schema({
     email: { type: String, minlength: 1, maxlength: 100, trim: true, unique: true }, // 邮箱 & 登录名
     nickname: { type: String, minlength: 1, maxlength: 10, trim: true, unique: true }, // 别名
-    lovePosts: [{type: Schema.Types.ObjectId, ref: 'Post'}], // 收藏夹
     salt: { default: '', type: String },
     hashedPassword: { default: '', type: String },
   }, {

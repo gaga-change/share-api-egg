@@ -17,6 +17,9 @@ class AuthController extends Controller {
   async login() {
     const { ctx, User } = this;
     const body = ctx.request.body;
+    if (ctx.session.user) {
+      return ctx.body = ctx.session.user
+    }
     ctx.assert(body.email, '邮箱不能为空', 400);
     ctx.assert(body.password, '密码不能为空', 400);
     const findUser = await User.findOne({ email: body.email });
@@ -25,6 +28,20 @@ class AuthController extends Controller {
     ctx.body = ctx.session.user = findUser;
   }
 
+  /**
+   * 修改密码
+   */
+  async updatePwd() {
+    const { ctx, User } = this;
+    const body = ctx.request.body;
+    ctx.assert(body.password, '密码不能为空', 400);
+    ctx.assert(body.newPassword, '密码不能为空', 400);
+    const user = await User.findById(ctx.session.user._id)
+    ctx.assert(user.authenticate(body.password), '密码错误', 400);
+    user.password = body.newPassword
+    ctx.body = ctx.session.user = await user.save()
+  }
+  
   /**
    * 注册
    */

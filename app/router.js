@@ -14,6 +14,7 @@ module.exports = app => {
   router.post('/api/auth/register', controller.auth.register); // 注册
   router.get('/api/auth/current', controller.auth.current); // 当前用户
   router.get('/api/auth/logout', controller.auth.logout); // 退出登录
+  router.post('/api/auth/updatePwd', controller.auth.updatePwd); // 修改密码
 
   // ## user
   router.get('/api/users', controller.user.index);
